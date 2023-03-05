@@ -1,0 +1,17 @@
+FROM golang:1.19.1 as builder
+
+WORKDIR /go-micrologout/
+
+COPY . .
+
+RUN CGO_ENABLED=0 go build -o micrologout /go-micrologout/main.go
+
+FROM alpine:latest
+
+WORKDIR /go-micrologout
+
+COPY --from=builder /go-micrologout/ /go-micrologout/
+
+EXPOSE 8081
+
+CMD ./micrologout

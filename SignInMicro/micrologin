@@ -1,0 +1,17 @@
+FROM golang:1.19.1 as builder
+
+WORKDIR /go-micrologin/
+
+COPY . .
+
+RUN CGO_ENABLED=0 go build -o micrologin /go-micrologin/main.go
+
+FROM alpine:latest
+
+WORKDIR /go-micrologin
+
+COPY --from=builder /go-micrologin/ /go-micrologin/
+
+EXPOSE 8080
+
+CMD ./micrologin

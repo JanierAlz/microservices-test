@@ -1,0 +1,43 @@
+version: '4.0'
+services:
+  postgres:
+    image: postgres:latest
+    volumes:
+      - ./db/postgres:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:6500:5432"
+    env_file:
+      - ./SignInMicro/app.env
+    networks:
+      lan:
+        ipv4_address: "177.177.0.4"
+  micrologin:
+    build:
+      context: ./SignInMicro
+      dockerfile: micrologin
+    ports:
+      - 8080:8080
+      - 5432:5432
+    depends_on:
+      - postgres
+    restart: 
+      on-failure
+    networks:
+      lan:
+        ipv4_address: "177.177.0.5"
+  micrologout:
+    build:
+      context: ./SignOutMicro
+      dockerfile: micrologout
+    ports:
+    - 8081:8081
+    networks:
+      lan:
+        ipv4_address: "177.177.0.3"
+networks:
+  lan:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "177.177.0.0/24"
+    
