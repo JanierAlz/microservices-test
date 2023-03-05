@@ -5,7 +5,7 @@ To run the project you need to install ```docker``` and ```docker compose``` mak
 After installing ```docker``` and ```docker compose```, to build and start the containers use the command 
 ```docker compose -p microservices up -d``` to stop and remove the containers use the command ```docker compose -p microservices down```. 
 
-Services run in ```http://localhost```, every service has different uses:
+To access the resources, use ```http://localhost``` as basic URL, add the following depending of the action you want to do:
 - Container ```micrologin```: to access the resource just add ```:8080/login``` or ```:8080/register```, usage will be described later.
 - Container ```micrologout```: to access the resource use ```:8081/logout```, usage will be described later.
 - To access database use ```localhost``` as your host, and the port ```6500```, username is ```root``` password ```123456```.
