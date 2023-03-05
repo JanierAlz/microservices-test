@@ -12,10 +12,10 @@ Services run in ```http://localhost```, every service has different uses:
 
 
 Services usage:
-  - To use login service, use ```POST``` for the request, and send ```username:<your-username>, password:<your-password>``` if no user is found the first time it will register automatically
+  - To use login service, use ```POST``` for the request, and send ```username:<your-username>, password:<your-password>``` in the body, if no user is found the first time it will register automatically
       with the credentials you send and login said user.
-  - To register new users, use ```POST``` for the request and send ```username:<your-username>, password:<your-password>```.
-  - To use logout service, use the ```POST```  for the request, and send ```username:<your-username>```, if no user is found logged (already signed out) you will get a error.
+  - To register new users, use ```POST``` for the request and send ```username:<your-username>, password:<your-password>``` in the body.
+  - To use logout service, use the ```POST```  for the request, and send ```username:<logged-username>``` in the body, if no user is found logged (already signed out) you will get a error.
 
 On updates:
   After pulling new fixes or updates, stop the services and remove the containers, after that, delete the images of all and every service using docker GUI or the command
